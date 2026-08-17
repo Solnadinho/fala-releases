@@ -107,6 +107,24 @@
   }
   #download .dlbtn:hover { filter: brightness(1.08); transform: translateY(-1px); }
   #download .note { margin-top: 14px; font-size: 12px; color: var(--muted2); line-height: 1.6; }
+  #download .steps {
+    list-style: none; counter-reset: step; margin-top: 20px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  #download .steps li {
+    counter-increment: step; position: relative; padding-left: 30px;
+    font-size: 13px; line-height: 1.55; color: var(--muted);
+  }
+  #download .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 0.5px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(127,232,176,0.16); border: 1px solid rgba(127,232,176,0.4);
+    color: var(--good); font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #download .steps b { color: var(--text); font-weight: 600; }
+  #download .steps a { color: var(--good); }
+  #download .steps .mono { font-family: ui-monospace, monospace; font-size: 12px; background: rgba(0,0,0,0.3); padding: 1px 5px; border-radius: 4px; }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
   .reveal.in { opacity: 1; transform: translateY(0); }
@@ -183,9 +201,16 @@
           <h3>✓ You're in — here's Fala</h3>
           <p>Apple Silicon (M1/M2/M3/M4) · v0.1.0</p>
           <a class="dlbtn" href="https://github.com/Solnadinho/fala-releases/releases/download/v0.1.0/Fala-0.1.0-arm64.dmg" download>⬇ Download Fala.dmg</a>
-          <div class="note">
-            First launch: macOS will show an "unidentified developer" warning (this build isn't notarized yet). Open <b>System Settings → Privacy &amp; Security</b>, scroll down, click <b>Open Anyway</b>, then open Fala again and confirm. You'll need your own free OpenAI API key from platform.openai.com.
-          </div>
+
+          <ol class="steps">
+            <li><b>Open the downloaded file</b> and drag Fala into your Applications folder.</li>
+            <li><b>Open Fala.</b> macOS will block it the first time — this build isn't Apple-notarized yet, so you'll see "Apple could not verify this app is free of malware." Click <b>Done</b> (not Move to Bin).</li>
+            <li><b>Go to <span class="mono">System Settings → Privacy &amp; Security</span></b>, scroll down, click <b>Open Anyway</b> next to the message about Fala, enter your password.</li>
+            <li><b>Open Fala again</b> — one more confirmation dialog appears, click <b>Open</b>. This only happens once.</li>
+            <li><b>Get a free OpenAI API key</b> at <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a> (a few dollars of credit covers months of dictation) and paste it into Fala's Settings.</li>
+            <li><b>Grant Microphone and Accessibility</b> when Fala asks — Accessibility is what lets it type for you, found under Privacy &amp; Security too.</li>
+            <li><b>Hold your key, speak, let go.</b> Default is Right ⌥ (Option) — change it anytime in Settings.</li>
+          </ol>
         </div>
       </div>
     </div>
